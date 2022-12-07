@@ -73,144 +73,189 @@ class _OpenPageState extends State<OpenPage> {
     );
   }
   Widget _buildSuccessSection(DetailMatchesModel match){
-    return Column(
-      mainAxisAlignment: MainAxisAlignment.center,
-      crossAxisAlignment: CrossAxisAlignment.center,
-      children: [
-        Row(
-          mainAxisAlignment: MainAxisAlignment.center,
-          crossAxisAlignment: CrossAxisAlignment.center,
-          children: [
-            Container(
-              child: Column(
-                children: [
-                  Image.network("https://countryflagsapi.com/png/${match.homeTeam?.name}"),
-                  Text("${match.homeTeam?.name}"),
-                ],
-              ),
-            ),
-            Text("${match.homeTeam?.goals}"),
-            Text("${match.awayTeam?.goals}"),
-            Container(
-              child: Column(
-                children: [
-                  Image.network("https://countryflagsapi.com/png/${match.awayTeam?.name}"),
-                  Text("${match.awayTeam?.name}"),
-                ],
-              ),
-            ),
-          ],
-        ),
-        SizedBox(
-          height: 300,
-        ),
-        Column(
-          children: [
-            Text("${match.venue}"),
-            Text("${match.location}"),
-          ],
-        ),
-
-        Container(
-          decoration: BoxDecoration(
-            border: Border.all(
-              color: Colors.black,
-              width: 2
-            )
-          ),
-          child: Column(
+    return Container(
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        crossAxisAlignment: CrossAxisAlignment.center,
+        children: [
+          Row(
             mainAxisAlignment: MainAxisAlignment.center,
+            crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-              Text("Statistic"),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                crossAxisAlignment: CrossAxisAlignment.center,
-
-                children: [
-                  Text("${match.homeTeam?.statistics?.ballPossession}"),
-
-                  Text("Ball Possession"),
-                  Text("${match.awayTeam?.statistics?.ballPossession}")
-                ],
+              Container(
+                child: Column(
+                  children: [
+                    Image.network("https://countryflagsapi.com/png/${match.homeTeam?.name}", width: 180, height: 150,),
+                    Text("${match.homeTeam?.name}"),
+                  ],
+                ),
               ),
-              Row(
-                children: [
-                  Text("${match.homeTeam?.statistics?.attemptsOnGoal}"),
-                  Text("Shot"),
-                  Text("${match.awayTeam?.statistics?.attemptsOnGoal}")
-                ],
-              ),
-              Row(
-                children: [
-                  Text("${match.homeTeam?.statistics?.kicksOnTarget}"),
-                  Text("Shot on Target"),
-                  Text("${match.awayTeam?.statistics?.kicksOnTarget}")
-                ],
-              ),
-              Row(
-                children: [
-                  Text("${match.homeTeam?.statistics?.corners}"),
-                  Text("Corners"),
-                  Text("${match.awayTeam?.statistics?.corners}")
-                ],
-              ),
-              Row(
-                children: [
-                  Text("${match.homeTeam?.statistics?.offsides}"),
-                  Text("OffSides"),
-                  Text("${match.awayTeam?.statistics?.offsides}")
-                ],
-              ),
-              Row(
-                children: [
-                  Text("${match.homeTeam?.statistics?.foulsCommited}"),
-                  Text("Fouls"),
-                  Text("${match.awayTeam?.statistics?.foulsCommited}")
-                ],
-              ),
-              Row(
-                children: [
-                  Text("${match.homeTeam?.statistics?.passes}"),
-                  Text("Pass Accuracy"),
-                  Text("${match.awayTeam?.statistics?.passes}")
-                ],
+              Text("  ${match.homeTeam?.goals}"),
+              Text("  -  "),
+              Text("${match.awayTeam?.goals}  "),
+              Container(
+                child: Column(
+                  children: [
+                    Image.network("https://countryflagsapi.com/png/${match.awayTeam?.name}", width: 180 , height: 150,),
+                    Text("${match.awayTeam?.name}"),
+                  ],
+                ),
               ),
             ],
           ),
-        ),
-        Text("Referee"),
-        Container(
-          child: ListView.builder(
-            scrollDirection: Axis.horizontal,
-              itemCount: match.officials?.length,
-              itemBuilder: (context, index)
-              {
-                return Container(
-                  height: 200,
-                  width: 100,
-                  margin: EdgeInsets.all(10),
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    children: [
-                      Text("FIFA",
-                        style: TextStyle(
-                            fontSize: 40,
-                            fontWeight: FontWeight.bold),
-                      ),
-                      Flexible(
-                          child:Text("${match.officials?[index].name}")
-                      ),
-                      Flexible(
-                          child:Text("${match.officials?[index].role}")
-                      ),
-                    ],
-                  ),
-                );
-              }
-              ),
-        ),
-      ],
+          SizedBox(
+            height: 20,
+          ),
+
+          Text("Stadium : ${match.venue}"),
+          Text("Location : ${match.location}"),
+
+          Container(
+            width: double.infinity,
+            margin: EdgeInsets.all(10),
+            padding: EdgeInsets.fromLTRB(25, 5, 25, 5),
+            decoration: BoxDecoration(
+              border: Border.all(
+                color: Colors.black,
+                width: 2
+              )
+            ),
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Text("Statistic",style:TextStyle(
+                    fontSize: 24
+                ),),
+                SizedBox(
+                  height: 8,
+                ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: [
+                    Text("${match.homeTeam?.statistics?.ballPossession}"),
+                    Text("Ball Possession"),
+                    Text("${match.awayTeam?.statistics?.ballPossession}")
+                  ],
+                ),
+                SizedBox(
+                  height: 8,
+                ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: [
+                    Text("${match.homeTeam?.statistics?.attemptsOnGoal}"),
+                    Text("Shot"),
+                    Text("${match.awayTeam?.statistics?.attemptsOnGoal}")
+                  ],
+                ),
+                SizedBox(
+                  height: 8,
+                ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: [
+                    Text("${match.homeTeam?.statistics?.kicksOnTarget}"),
+                    Text("Shot on Target"),
+                    Text("${match.awayTeam?.statistics?.kicksOnTarget}")
+                  ],
+                ),
+                SizedBox(
+                  height: 8,
+                ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: [
+                    Text("${match.homeTeam?.statistics?.corners}"),
+                    Text("Corners"),
+                    Text("${match.awayTeam?.statistics?.corners}")
+                  ],
+                ),
+                SizedBox(
+                  height: 8,
+                ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: [
+                    Text("${match.homeTeam?.statistics?.offsides}"),
+                    Text("OffSides"),
+                    Text("${match.awayTeam?.statistics?.offsides}")
+                  ],
+                ),
+                SizedBox(
+                  height: 8,
+                ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: [
+                    Text("${match.homeTeam?.statistics?.foulsCommited}"),
+                    Text("Fouls"),
+                    Text("${match.awayTeam?.statistics?.foulsCommited}")
+                  ],
+                ),
+                SizedBox(
+                  height: 8,
+                ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: [
+                    Text("${match.homeTeam?.statistics?.passes}"),
+                    Text("Passes"),
+                    Text("${match.awayTeam?.statistics?.passes}")
+                  ],
+                ),
+                SizedBox(
+                  height: 8,
+                ),
+              ],
+            ),
+          ),
+          SizedBox(
+            height: 20,
+          ),
+          Text("Referee",style:TextStyle(
+            fontSize: 24
+          ),),
+          Container(
+            height: 200,
+            child: ListView.builder(
+              scrollDirection: Axis.horizontal,
+                itemCount: match.officials?.length,
+                itemBuilder: (context, index)
+                {
+                  return Container(
+                    height: 200,
+                    width: 100,
+                    margin: EdgeInsets.all(10),
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      children: [
+                        Text("FIFA",
+                          style: TextStyle(
+                              fontSize: 40,
+                              fontWeight: FontWeight.bold),
+                        ),
+                        Flexible(
+                            child:Text("${match.officials?[index].name}")
+                        ),
+                        Flexible(
+                            child:Text("${match.officials?[index].role}")
+                        ),
+                      ],
+                    ),
+                  );
+                }
+                ),
+          ),
+        ],
+      ),
     );
   }
 }

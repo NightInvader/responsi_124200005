@@ -95,7 +95,6 @@ class _MainPageState extends State<MainPage> {
     return Padding(
       padding: EdgeInsets.all(5.0),
       child: Container(
-          width: MediaQuery.of(context).size.width,
           color: Colors.white,
           child: Column(
             children: <Widget>[
@@ -103,45 +102,65 @@ class _MainPageState extends State<MainPage> {
                 height: 2,
               ),
               Container(
-                  child: ListTile(
-                    leading: Column(
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: [
+                    Column(
                       children: [
-                        Image.network(
-                          "https://countryflagsapi.com/png/${matches.homeTeam?.name}",
-                          width: 40,
-                          height: 15,
-                        ),
-                        SizedBox(
-                          height: 3,
-                        ),
-                        Text(
-                          '${matches.homeTeam?.name}',
-                          textAlign: TextAlign.center,
-                        ),
+                        Image.network("https://countryflagsapi.com/png/${matches.homeTeam?.name}", width: 170, height: 150,),
+                        Text("${matches.homeTeam?.name}")
                       ],
                     ),
-                    title: Text(
-                      "${matches.homeTeam?.goals} : ${matches.awayTeam?.goals}",
-                      textAlign: TextAlign.center,
-                      style: TextStyle(fontSize: 14.0),
-                    ),
-                    trailing: Column(
+                    Text(" ${matches.homeTeam?.goals}"),
+                    Text(" - "),
+                    Text("${matches.awayTeam?.goals} "),
+                    Column(
                       children: [
-                        Image.network(
-                          "https://countryflagsapi.com/png/${matches.awayTeam?.name}",
-                          width: 40,
-                          height: 15,
-                        ),
-                        SizedBox(
-                          height: 3,
-                        ),
-                        Text(
-                          '${matches.awayTeam?.name}',
-                          textAlign: TextAlign.center,
-                        ),
+                        Image.network("https://countryflagsapi.com/png/${matches.awayTeam?.name}", width: 170, height: 150,),
+                        Text("${matches.awayTeam?.name}")
                       ],
                     ),
-                  )),
+                  ],
+                ),
+                  // child: ListTile(
+                  //   leading: Column(
+                  //     children: [
+                  //       Image.network(
+                  //         "https://countryflagsapi.com/png/${matches.homeTeam?.name}",
+                  //         height: 50,
+                  //       ),
+                  //       SizedBox(
+                  //         height: 3,
+                  //       ),
+                  //       Text(
+                  //         '${matches.homeTeam?.name}',
+                  //         textAlign: TextAlign.center,
+                  //       ),
+                  //     ],
+                  //   ),
+                  //   title: Text(
+                  //     "${matches.homeTeam?.goals} : ${matches.awayTeam?.goals}",
+                  //     textAlign: TextAlign.center,
+                  //     style: TextStyle(fontSize: 14.0),
+                  //   ),
+                  //   trailing: Column(
+                  //     children: [
+                  //       Image.network(
+                  //         "https://countryflagsapi.com/png/${matches.awayTeam?.name}",
+                  //         height: 37,
+                  //       ),
+                  //       SizedBox(
+                  //         height: 3,
+                  //       ),
+                  //       Text(
+                  //         '${matches.awayTeam?.name}',
+                  //         textAlign: TextAlign.center,
+                  //       ),
+                  //     ],
+                  //   ),
+                  // )
+              ),
             ],
           )),
     );
